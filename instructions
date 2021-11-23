@@ -1,0 +1,14 @@
+cd jetson-inference/python/examples
+
+python3 detectnet_without_display.py --model=models/face/ssd-mobilenet.onnx --labels=models/face/labels.txt --input-blob=input_0 --output-cvg=scores --output-bbox=boxes /dev/video0
+
+
+detectnet --model=models/face/mb2-ssd-lite.onnx --labels=models/face/labels.txt \
+          --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
+            "$IMAGES/1.jpg" $IMAGES/test/1.jpg
+
+
+http://158.58.130.148:80/mjpg/video.mjpg
+http://166.165.35.32:80/mjpg/video.mjpg
+
+python3 detectnet_with_multi_source.py --network="pednet"  /dev/video0
